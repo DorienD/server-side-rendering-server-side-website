@@ -1,0 +1,46 @@
+<%- include('partials/head') %>
+
+<%- include('partials/nav', {current: '/pizzas'}); %>
+
+    <div class="pizza-container container">
+        <div class="pizza-image">
+            <% if (pizza.image) { %>
+                <img src="https://fdnd-agency.directus.app/assets/<%= pizza.image %>" alt="">
+            <% } else { %>
+                Geen afbeelding
+            <% } %>
+        </div>
+        <div class="pizza-content">
+            <h1><%= pizza.name %></h1>
+
+            <span><%= pizza.prize %></span>
+
+            <%- pizza.description %>
+            <a href="" class="button">Bestel deze lekkere pizza!</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Bekijk ook deze pizza's</h2>
+        <div class="pizzas">
+            <% pizzas.forEach(function(pizza) { %>
+                <article class="pizza">
+                    <a href="/pizzas/<%= pizza.id %>">
+                        <div class="pizza__image">
+                        <% if (pizza.image) { %>
+                            <img src="https://fdnd-agency.directus.app/assets/<%= pizza.image %>" alt="">
+                        <% } else { %>
+                            Geen afbeelding
+                        <% } %>
+                        </div>
+                        <div class="pizza__content">
+                            <h2><%= pizza.name %></h2>
+                            <span>&euro; <%= pizza.price %></span>
+                        </div>
+                    </a>
+                </article>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/foot') %>

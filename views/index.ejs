@@ -1,0 +1,52 @@
+<%- include('partials/head') %>
+    
+    <%- include('partials/nav', {current: '/'}); %>
+    
+    <div class="container">
+        <h1>Welkom bij PizzAria</h1>
+        <p class="summary">Welkom bij PizzAria, de digitale hotspot waar HTML en CSS samensmelten tot een spetterend feest van webdesign! Stap binnen in een wereld vol visuele lekkernijen, waar elke muisklik een smaakexplosie teweegbrengt. Onze homepage is als een webdesign wonderland, een plek waar pixels dansen en kleuren bruisen als frisse tomatensaus. Van de hypnotiserende navigatie tot de betoverende beelden - elk element is doordrenkt met de passie van onze digitale chefs. Ontdek de kunst van het smakelijke scrollen, waar elke sectie een nieuw culinair avontuur onthult. Bij PizzAria serveren we geen gewone website, maar een gastronomisch meesterwerk op het web. Laat je verleiden, scroll door de smaken, en geniet van de digitale heerlijkheden die op je wachten!</p>
+        
+        <h2>Onze pizza's</h2>
+        <div id="pizzas" class="pizzas">
+            <% pizzas.forEach(function(pizza) { %>
+                <article class="pizza">
+                    <a href="/pizzas/<%= pizza.id %>">
+                        <div class="pizza__image">
+                        <% if (pizza.image) { %>
+                            <img src="https://fdnd-agency.directus.app/assets/<%= pizza.image %>" alt="">
+                        <% } else { %>
+                            Geen afbeelding
+                        <% } %>
+                        </div>
+                        <div class="pizza__content">
+                            <h2><%= pizza.name %></h2>
+                            <span>&euro; <%= pizza.price %></span>
+                        </div>
+                    </a>
+                </article>
+            <% }) %>
+        </div>
+
+        <h2>Onze pasta's</h2>
+        <div id="pastas" class="pastas">
+            <% pastas.forEach(function(pasta) { %>
+                <article class="pasta">
+                    <a href="/pasta/<%= pasta.id %>">
+                        <div class="pasta__image">
+                        <% if (pasta.image) { %>
+                            <img src="https://fdnd-agency.directus.app/assets/<%= pasta.image %>" alt="">
+                        <% } else { %>
+                            Geen afbeelding
+                        <% } %>
+                        </div>
+                        <div class="pasta__content">
+                            <h2><%= pasta.name %></h2>
+                            <span>&euro; <%= pasta.price %></span>
+                        </div>
+                    </a>
+                </article>
+            <% }) %>
+        </div>
+
+    </div>
+<%- include('partials/foot') %>

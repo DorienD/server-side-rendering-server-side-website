@@ -1,0 +1,20 @@
+<%- include('partials/head') %>
+    
+    <%- include('partials/nav', {current: '/contact'}); %>
+    
+    <div class="container">
+        <h1>Contacteer PizzAria</h1>
+        <p>Wij bij PizzAria zijn altijd verheugd om van je te horen! Heb je vragen, suggesties of wil je meer weten over onze digitale lekkernijen? Neem gerust contact met ons op via het onderstaande formulier. Ons team van webculinaire experts staat klaar om al je vragen te beantwoorden. Of je nu een liefhebber bent van HTML, CSS of gewoon een fijnproever van goed webdesign, we kijken ernaar uit om met je te praten. Laat ons samen de perfecte digitale smaakbeleving creëren. Tot snel in onze virtuele keuken!</p>
+        
+        <form action="/" method="post">
+            <fieldset>
+                <label for="name">Naam</label>
+                <input type="text" name="name" id="name">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="message">Bericht</label>
+                <textarea id="message" name="message"></textarea>
+            </fieldset>
+        </form>
+    </div>
+<%- include('partials/foot') %>
