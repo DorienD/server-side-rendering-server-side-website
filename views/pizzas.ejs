@@ -6,23 +6,9 @@
         <h1>Onze pizza's</h1>
         <p class="summary">Ontdek de onweerstaanbare wereld van PizzAria, waar elke klik een smaakexplosie onthult. Onze digitale pizzeria, met de perfecte mix van HTML en CSS, presenteert een menu boordevol visueel aantrekkelijke pizza's. Van de verleidelijke homepagina tot de sfeervolle contactpagina, elke sectie is als een culinair kunstwerk op het web. Duik in de smaken van ons webdesign en laat je verrassen door de creatieve combinaties. Bij PizzAria serveren we geen gewone pizza's, maar een feest voor de zintuigen. Ontdek, klik en geniet van de digitale smaaksensatie!</p>
         
-        <div class="pizzas">
+        <div class="card-grid">
             <% pizzas.forEach(function(pizza) { %>
-                <article class="pizza">
-                    <a href="/pizzas/<%= pizza.id %>">
-                        <div class="pizza__image">
-                        <% if (pizza.image) { %>
-                            <img src="https://fdnd-agency.directus.app/assets/<%= pizza.image %>" alt="">
-                        <% } else { %>
-                            Geen afbeelding
-                        <% } %>
-                        </div>
-                        <div class="pizza__content">
-                            <h2><%= pizza.name %></h2>
-                            <span>&euro; <%= pizza.price %></span>
-                        </div>
-                    </a>
-                </article>
+                <%- include('partials/card', {result: pizza, url: "pizzas"}); %>
             <% }) %>
         </div>
     </div>

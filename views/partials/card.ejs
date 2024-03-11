@@ -1,0 +1,15 @@
+<article class="card -<%= url %>">
+    <a href="/<%= url %>/<%= result.id %>">
+        <div class="card__image">
+        <% if (result.image) { %>
+            <img src="https://fdnd-agency.directus.app/assets/<%= result.image %>" alt="">
+        <% } else { %>
+            Geen afbeelding
+        <% } %>
+        </div>
+        <div class="card__content">
+            <h2><%= result.name %></h2>
+            <span>&euro; <%= result.price %></span>
+        </div>
+    </a>
+</article>

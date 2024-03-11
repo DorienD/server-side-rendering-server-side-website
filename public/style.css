@@ -5,20 +5,24 @@ body {
     font-family: georgia, sans-serif;
     color: #000;
     line-height: 1.4;
+
+    --color-bg: darkred;
 }
-
-form {
-
-}
-
-
 
 label {
     display: block;
 }
 
+img {
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 3em;
+}
+
 nav {
-    margin: 10px 10px 30px 10px;
+    margin: 10px 10px 30px;
 }
 
 nav ul {
@@ -41,45 +45,36 @@ nav a {
 }
 
 nav a.active,
-nav a:hover{
-    background: darkred;
+nav a:hover {
+    background: var(--color-bg);
     color: white;
 }
 
-img {
-    max-width: 100%;
-}
-
-.container{
+.container {
     width: 90%;
     max-width: 900px;
-    margin:0 auto 0 auto;
+    margin: 0 auto;
 }
 
-.pizza {
+.card {
     background: goldenrod;
 }
 
-.pasta {
+.card.-pastas {
     background: rosybrown;
 }
 
-.pizza a,
-.pasta a {
+.card a {
     color: currentColor;
     text-decoration: none;
 }
 
-.pasta__content,
-.pizza__content {
+.card__content {
     padding: 20px;
-/*    min-height: 150px;*/
     position: relative;
 }
 
-
-.pizza__image,
-.pasta__image {
+.card__image {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,48 +88,39 @@ img {
     }
 }
 
-.pizza__image img {
-
-}
-
 .button {
     display: inline-flex;
     align-items: center;
     min-height: 45px;
     padding: 0 15px;
-    background: darkred;
+    background: var(--color-bg);
     color: #fff;
-    text-transform:uppercase;
+    text-transform: uppercase;
     text-decoration: none;
 }
 
-h1 {
-    font-size: 3em;
-}
-
-.pizzas,
-.pastas{
+.card-grid {
     display: grid;
     gap: 20px;
 
-    @media(min-width: 600px) {
+    @media (min-width: 600px) {
         grid-template-columns: 1fr 1fr;
     }
 
-    @media(min-width: 900px) {
-        grid-template-columns:1fr 1fr 1fr;
+    @media (min-width: 900px) {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 .pizza-container {
-    @media(min-width: 800px) {
+    @media (min-width: 800px) {
         display: flex;
         gap: 20px;
     }
 }
 
 .pizza-image {
-    @media(min-width: 800px) {
+    @media (min-width: 800px) {
         width: 60%;
     }
 }
@@ -142,5 +128,5 @@ h1 {
 .summary {
     background: rgba(255,255,255,0.8);
     padding: 1rem;
-    font-size:1.1em;
+    font-size: 1.1em;
 }

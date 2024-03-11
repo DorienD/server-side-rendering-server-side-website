@@ -6,23 +6,9 @@
         <h1>Onze pasta's</h1>
         <p class="summary">Welkom bij PizzAria, waar we de kunst van pasta en webdesign combineren. Blader door ons digitale pastamenu, vakkundig gecreëerd met HTML en CSS, en ontdek een scala aan smaakvolle webpagina's. Elk gerecht op onze pasta-overzichtspagina is als een digitale culinaire reis, bereid met een perfecte mix van creativiteit en technisch vakmanschap. Van klassieke spaghetti tot verrassende fusilli, elke pastapagina is doordrenkt met visuele heerlijkheden. Bij PizzAria serveren we geen gewone pasta, maar een onvergetelijke online smaakbeleving. Geniet van de virtuele pasta-ervaring!</p>
         
-        <div class="pastas">
+        <div class="card-grid">
             <% pastas.forEach(function(pasta) { %>
-                <article class="pasta">
-                    <a href="/pastas/<%= pasta.id %>">
-                        <div class="pasta__image">
-                        <% if (pasta.image) { %>
-                            <img src="https://fdnd-agency.directus.app/assets/<%= pasta.image %>" alt="">
-                        <% } else { %>
-                            Geen afbeelding
-                        <% } %>
-                        </div>
-                        <div class="pasta__content">
-                            <h2><%= pasta.name %></h2>
-                            <span>&euro; <%= pasta.price %></span>
-                        </div>
-                    </a>
-                </article>
+                <%- include('partials/card', {result: pasta, url: "pastas"}); %>
             <% }) %>
         </div>
     </div>

@@ -5,7 +5,6 @@ import express from 'express'
 import fetchJson from './helpers/fetch-json.js'
 
 // Haal alle squads uit de WHOIS API op
-// const squadData = await fetchJson('https://fdnd.directus.app/items/squad')
 const pizzaData = await fetchJson('https://fdnd-agency.directus.app/items/demo_pizzas')
 const pastaData = await fetchJson('https://fdnd-agency.directus.app/items/demo_pastas')
 
@@ -24,6 +23,17 @@ app.use(express.static('public'))
 // Zorg dat werken met request data makkelijker wordt
 app.use(express.urlencoded({extended: true}))
 
+// Stel het poortnummer in waar express op moet gaan luisteren
+app.set('port', process.env.PORT || 8001)
+
+// Start express op, haal daarbij het zojuist ingestelde poortnummer op
+app.listen(app.get('port'), function () {
+  // Toon een bericht in de console en geef het poortnummer door
+  console.log(`Application started on http://localhost:${app.get('port')}`)
+})
+
+// Routes
+
 // Maak een GET route voor de index
 app.get('/', function (request, response) {
     response.render('index', {pastas: pastaData.data, pizzas: pizzaData.data});
@@ -34,26 +44,25 @@ app.get('/contact', function (request, response) {
 })
 
 app.get('/pizzas', function (request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/demo_pizzas').then((pizzasDataUitDeAPI) => {
-        response.render('pizzas', {pizzas: pizzasDataUitDeAPI.data});
-    });
-})
-
-app.get('/pastas', function (request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/demo_pastas').then((pizzasDataUitDeAPI) => {
-        response.render('pastas', {pastas: pizzasDataUitDeAPI.data});
-    });
-})
-
-app.get('/pastas/:id', function (request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/demo_pastas?filter={"id":'+ request.params.id +'}').then((pizzasDataUitDeAPI) => {
-        response.render('pasta', {pasta: pizzasDataUitDeAPI.data[0], pastas: pastaData.data});
-    });
+    response.render('pizzas', {pizzas: pizzaData.data});
 })
 
 app.get('/pizzas/:id', function (request, response) {
     fetchJson('https://fdnd-agency.directus.app/items/demo_pizzas?filter={"id":'+ request.params.id +'}').then((pizzaDetail) => {
-        response.render('pizza', {pizza: pizzaDetail.data[0], pizzas: pizzaData.data});
+        response.render('pizza', {
+            pizza: pizzaDetail.data[0], 
+            pizzas: pizzaData.data
+        });
+    });
+})
+
+app.get('/pastas', function (request, response) {
+    response.render('pastas', {pastas: pastaData.data});
+})
+
+app.get('/pastas/:id', function (request, response) {
+    fetchJson('https://fdnd-agency.directus.app/items/demo_pastas?filter={"id":'+ request.params.id +'}').then((pastasDataUitDeAPI) => {
+        response.render('pasta', {pasta: pastasDataUitDeAPI.data[0], pastas: pastaData.data});
     });
 })
 
@@ -70,13 +79,4 @@ app.get('/detail/:id', function (request, response) {
     // Render detail.ejs uit de views map en geef de opgehaalde data mee als variable, genaamd person
     response.render('detail', {person: apiData.data, squads: squadData.data})
   })
-})
-
-// Stel het poortnummer in waar express op moet gaan luisteren
-app.set('port', process.env.PORT || 8001)
-
-// Start express op, haal daarbij het zojuist ingestelde poortnummer op
-app.listen(app.get('port'), function () {
-  // Toon een bericht in de console en geef het poortnummer door
-  console.log(`Application started on http://localhost:${app.get('port')}`)
 })
